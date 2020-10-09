@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ByteBank
+namespace Contas01
 {
     public class ContaCorrente
     {
@@ -50,16 +50,18 @@ namespace ByteBank
             Agencia = agencia;
             Numero = numero;
 
-            TaxaOperacao = 30 / TotalDeContasCriadas;
+            
 
             TotalDeContasCriadas++;
+
+            TaxaOperacao = 30 / TotalDeContasCriadas;
         }
 
         public bool Sacar(double valor)
         {
             if (_saldo < valor)
             {
-                return false;
+                throw new SaldoInsuficienteException();
             }
 
             _saldo -= valor;
